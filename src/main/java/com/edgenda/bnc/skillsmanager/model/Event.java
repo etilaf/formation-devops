@@ -1,12 +1,15 @@
 package com.edgenda.bnc.skillsmanager.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.PersistenceConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 public class Event {
@@ -18,11 +21,13 @@ public class Event {
     @NotEmpty
     private String name;
 
-    @NotEmpty
-    private LocalDateTime startDate;
+    @NotNull
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
+    private Date startDate;
 
-    @NotEmpty
-    private LocalDateTime endDate;
+    @NotNull
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
+    private Date endDate;
 
     @NotEmpty
     private String status;
@@ -36,7 +41,7 @@ public class Event {
     public Event() {
     }
 
-    public Event(Long id, String name, LocalDateTime startDate, LocalDateTime endDate, String status,String owner,  String description) {
+    public Event(Long id, String name, Date startDate, Date endDate, String status,String owner,  String description) {
         this.id = id;
         this.name = name;
         this.startDate = startDate;
@@ -47,7 +52,7 @@ public class Event {
     }
 
     @PersistenceConstructor
-    public Event(String name, LocalDateTime startDate, LocalDateTime endDate, String status,String owner,  String description) {
+    public Event(String name, Date startDate, Date endDate, String status,String owner,  String description) {
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -64,11 +69,11 @@ public class Event {
         return name;
     }
 
-    public LocalDateTime getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public LocalDateTime getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 

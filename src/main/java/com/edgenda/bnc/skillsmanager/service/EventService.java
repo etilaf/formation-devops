@@ -21,6 +21,19 @@ public class EventService {
     public EventService(EventRepository eventRepository) {
         this.eventRepository = eventRepository;
     }
+
+    public Event createEvent(Event event) {
+        Assert.notNull(event, "Event cannot be null");
+        final Event newEvent = new Event(
+                event.getName(),
+                event.getStartDate(),
+                event.getEndDate(),
+                event.getStatus(),
+                event.getOwner(),
+                event.getDescription()
+        );
+        return eventRepository.save(newEvent);
+    }
 /*
     public Event getEmployee(Long id) {
         Assert.notNull(id, "Event ID cannot be null");
