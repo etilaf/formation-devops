@@ -2,6 +2,7 @@ package com.edgenda.bnc.skillsmanager.rest;
 
 import com.edgenda.bnc.skillsmanager.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import com.edgenda.bnc.skillsmanager.model.Event;
 
@@ -22,9 +23,11 @@ public class EventController {
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
-    public void updateEvent(@PathVariable Long id, @RequestBody Event event) {
+    @ResponseStatus(HttpStatus.OK)
+    public String updateEvent(@PathVariable Long id, @RequestBody Event event) {
         eventService.updateEvent(
                 new Event(
+                        id,
                         event.getName(),
                         event.getStartDate(),
                         event.getEndDate(),
@@ -33,6 +36,7 @@ public class EventController {
                         event.getDescription()
                 )
         );
+        return "Updated";
     }
 /*
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
