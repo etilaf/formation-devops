@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -44,6 +45,14 @@ public class EventService {
         Assert.notNull(event, "Event cannot be null");
         this.getEvent(event.getId());
         eventRepository.save(event);
+    }
+
+    public List<Event> listEventByOwner(String owner, LocalDateTime startDate, LocalDateTime endDate) {
+        Assert.notNull(owner, "Event OWNER cannot be null");
+        Assert.notNull(startDate, "Event STARTDATE cannot be null");
+        Assert.notNull(endDate, "Event ENDDATE cannot be null");
+
+        return eventRepository.listEventByOwner(owner, startDate, endDate);
     }
 
 /*

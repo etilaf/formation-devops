@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import com.edgenda.bnc.skillsmanager.model.Event;
+import org.springframework.format.annotation.*;
+import java.time.LocalDateTime;
+import java.util.List;
+
 
 @RestController
 @RequestMapping(path = "/events")
@@ -42,6 +46,15 @@ public class EventController {
                 )
         );
     }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public List<Event> listEventByOwner(
+                                            @RequestParam("owner") String owner,
+                                            @RequestParam("startPeriod") @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss") LocalDateTime startPeriod,
+                                            @RequestParam("endPeriod") @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss") LocalDateTime endPeriod) {
+        return eventService.listEventByOwner(owner, startPeriod, endPeriod);
+    }
+
 /*
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
     public Event getEmployee(@PathVariable Long id) {
