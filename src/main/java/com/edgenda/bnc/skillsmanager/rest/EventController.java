@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import com.edgenda.bnc.skillsmanager.model.Event;
 import org.springframework.format.annotation.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 
@@ -27,12 +28,12 @@ public class EventController {
     public Event createEvent(@RequestBody Event event) {
         return eventService.createEvent(event);
     }
-
+/*
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
     public Event getEvent(@PathVariable Long id) {
         return eventService.getEvent(id);
     }
-
+*/
     @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
     public void updateEvent(@PathVariable Long id, @RequestBody Event event) {
         eventService.updateEvent(
@@ -50,12 +51,17 @@ public class EventController {
     @RequestMapping(method = RequestMethod.GET)
     public List<Event> listEventByOwner(
                                             @RequestParam("owner") String owner,
-                                            @RequestParam("startPeriod") @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss") LocalDateTime startPeriod,
-                                            @RequestParam("endPeriod") @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss") LocalDateTime endPeriod) {
+                                            @RequestParam(name = "startPeriod",required = false, defaultValue = "1900-01-01T00:00:00") @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss") Date startPeriod,
+                                            @RequestParam(name = "endPeriod",required = false, defaultValue = "9999-12-31T23:59:59") @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss") Date endPeriod) {
         return eventService.listEventByOwner(owner, startPeriod, endPeriod);
     }
 
 /*
+    @RequestMapping(method = RequestMethod.GET)
+    public Event getEvent(@RequestParam("owner") String owner) {
+        return eventService.getEvent(owner);
+    }
+
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
     public Event getEmployee(@PathVariable Long id) {
         return employeeService.getEmployee(id);

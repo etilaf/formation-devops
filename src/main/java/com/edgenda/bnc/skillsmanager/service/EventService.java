@@ -11,6 +11,7 @@ import org.springframework.util.Assert;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -48,7 +49,7 @@ public class EventService {
         eventRepository.save(event);
     }
 
-    public List<Event> listEventByOwner(String owner, LocalDateTime startDate, LocalDateTime endDate) {
+    public List<Event> listEventByOwner(String owner, Date startDate, Date endDate) {
         Assert.notNull(owner, "Event OWNER cannot be null");
         Assert.notNull(startDate, "Event STARTDATE cannot be null");
         Assert.notNull(endDate, "Event ENDDATE cannot be null");
@@ -56,6 +57,11 @@ public class EventService {
         return eventRepository.listEventByOwner(owner, startDate, endDate);
     }
 
+    public Event getEvent(String owner) {
+        Assert.notNull(owner, "Event owner cannot be null");
+        return eventRepository.findByOwner(owner)
+                .orElseThrow(() -> new UnknownOwnerException(owner));
+    }
 /*
     public Event getEmployee(Long id) {
         Assert.notNull(id, "Event ID cannot be null");

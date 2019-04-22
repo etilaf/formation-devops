@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,7 +24,7 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     List<Event> findByEventOwner(String eventOwner);
 
     @Query("SELECT e FROM Event e WHERE e.owner = ?1 AND (e.startDate >= ?2 AND e.startDate <= ?3) ORDER BY e.startDate")
-    List<Event> listEventByOwner(String owner, LocalDateTime startPeriod, LocalDateTime endPeriod);
+    List<Event> listEventByOwner(String owner, Date startPeriod, Date endPeriod);
 
 }
 
