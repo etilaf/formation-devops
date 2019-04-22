@@ -3,6 +3,7 @@ package com.edgenda.bnc.skillsmanager.rest;
 import com.edgenda.bnc.skillsmanager.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import com.edgenda.bnc.skillsmanager.model.Event;
 
 @RestController
 @RequestMapping(path = "/events")
@@ -13,6 +14,25 @@ public class EventController {
     @Autowired
     public EventController(EventService eventService) {
         this.eventService = eventService;
+    }
+
+    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
+    public Event getEvent(@PathVariable Long id) {
+        return eventService.getEvent(id);
+    }
+
+    @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
+    public void updateEvent(@PathVariable Long id, @RequestBody Event event) {
+        eventService.updateEvent(
+                new Event(
+                        event.getName(),
+                        event.getStartDate(),
+                        event.getEndDate(),
+                        event.getStatus(),
+                        event.getOwner(),
+                        event.getDescription()
+                )
+        );
     }
 /*
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)

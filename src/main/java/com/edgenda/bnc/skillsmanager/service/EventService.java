@@ -2,7 +2,7 @@ package com.edgenda.bnc.skillsmanager.service;
 
 import com.edgenda.bnc.skillsmanager.model.Event;
 import com.edgenda.bnc.skillsmanager.repository.EventRepository;
-import com.edgenda.bnc.skillsmanager.service.exception.UnknownEmployeeException;
+import com.edgenda.bnc.skillsmanager.service.exception.UnknownEventException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -21,6 +21,19 @@ public class EventService {
     public EventService(EventRepository eventRepository) {
         this.eventRepository = eventRepository;
     }
+
+    public Event getEvent(Long id) {
+        Assert.notNull(id, "Event ID cannot be null");
+        return eventRepository.findById(id)
+                .orElseThrow(() -> new UnknownEventException(id));
+    }
+
+    public void updateEvent(Event event) {
+        Assert.notNull(event, "Event cannot be null");
+        this.getEvent(event.getId());
+        eventRepository.save(event);
+    }
+
 /*
     public Event getEmployee(Long id) {
         Assert.notNull(id, "Event ID cannot be null");
