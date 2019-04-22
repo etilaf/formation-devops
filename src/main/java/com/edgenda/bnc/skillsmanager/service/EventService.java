@@ -25,6 +25,7 @@ public class EventService {
         this.eventRepository = eventRepository;
     }
 
+
     public Event createEvent(Event event) {
         Assert.notNull(event, "Event cannot be null");
         final Event newEvent = new Event(
@@ -61,6 +62,16 @@ public class EventService {
         Assert.notNull(owner, "Event owner cannot be null");
         return eventRepository.findByOwner(owner)
                 .orElseThrow(() -> new UnknownOwnerException(owner));
+    }
+
+    public void deleteEvent(Long id) {
+        Assert.notNull(id, "ID cannot be null");
+        eventRepository.delete(id);
+    }
+
+    public List<Event> getEvent() {
+        return eventRepository.findAll();
+
     }
 /*
     public Event getEmployee(Long id) {

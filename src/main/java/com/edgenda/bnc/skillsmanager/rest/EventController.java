@@ -23,6 +23,7 @@ public class EventController {
     public EventController(EventService eventService) {
         this.eventService = eventService;
     }
+
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public Event createEvent(@RequestBody Event event) {
@@ -55,6 +56,14 @@ public class EventController {
                                             @RequestParam(name = "endPeriod",required = false, defaultValue = "9999-12-31T23:59:59") @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss") Date endPeriod) {
         return eventService.listEventByOwner(owner, startPeriod, endPeriod);
     }
+
+
+    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+    public String deleteEvent(@PathVariable Long id) {
+        eventService.deleteEvent(id);
+        return "L'evenement a été supprimé";
+    }
+
 
 /*
     @RequestMapping(method = RequestMethod.GET)
