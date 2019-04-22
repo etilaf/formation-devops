@@ -6,6 +6,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.PersistenceConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 
 @Entity
@@ -18,10 +20,10 @@ public class Event {
     @NotEmpty
     private String name;
 
-    @NotEmpty
+    @NotNull
     private LocalDateTime startDate;
 
-    @NotEmpty
+    @NotNull
     private LocalDateTime endDate;
 
     @NotEmpty

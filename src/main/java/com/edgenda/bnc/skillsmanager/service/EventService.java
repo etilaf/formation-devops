@@ -21,6 +21,15 @@ public class EventService {
     public EventService(EventRepository eventRepository) {
         this.eventRepository = eventRepository;
     }
+
+    public void deleteEvent(Long id) {
+        Assert.notNull(id, "ID cannot be null");
+        eventRepository.delete(id);
+    }
+
+    public List<Event> getEvent() {
+        return eventRepository.findAll();
+    }
 /*
     public Event getEmployee(Long id) {
         Assert.notNull(id, "Event ID cannot be null");

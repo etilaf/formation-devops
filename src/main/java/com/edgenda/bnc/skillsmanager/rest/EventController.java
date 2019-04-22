@@ -14,6 +14,14 @@ public class EventController {
     public EventController(EventService eventService) {
         this.eventService = eventService;
     }
+
+    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+    public String deleteEvent(@PathVariable Long id) {
+        eventService.deleteEvent(id);
+        return "L'evenement a été supprimé";
+    }
+
+
 /*
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
     public Event getEmployee(@PathVariable Long id) {
