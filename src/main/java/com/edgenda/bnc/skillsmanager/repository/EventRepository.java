@@ -16,4 +16,11 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     @Query("SELECT event FROM Event event WHERE event.id = ?1")
     List<Event> findByEventId(Long eventId);
 
+
+    Optional<Event> findByOwner(String owner);
+
+    @Query("SELECT event FROM Event event WHERE event.owner = ?1")
+    List<Event> findByEventOwner(String eventOwner);
+
 }
+
