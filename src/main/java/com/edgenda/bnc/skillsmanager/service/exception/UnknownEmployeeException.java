@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class UnknownEmployeeException extends RuntimeException {
 
     public UnknownEmployeeException(Long id) {
-        super("Unknown Employee with ID=" + id);
+        super("Unknown Event with ID=" + id);
     }
 
 }

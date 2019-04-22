@@ -1,50 +1,45 @@
 package com.edgenda.bnc.skillsmanager.rest;
 
-import com.edgenda.bnc.skillsmanager.model.Employee;
-import com.edgenda.bnc.skillsmanager.model.Skill;
-import com.edgenda.bnc.skillsmanager.service.EmployeeService;
+import com.edgenda.bnc.skillsmanager.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping(path = "/employees")
-public class EmployeeController {
+@RequestMapping(path = "/events")
+public class EventController {
 
-    private final EmployeeService employeeService;
+    private final EventService eventService;
 
     @Autowired
-    public EmployeeController(EmployeeService employeeService) {
-        this.employeeService = employeeService;
+    public EventController(EventService eventService) {
+        this.eventService = eventService;
     }
-
+/*
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
-    public Employee getEmployee(@PathVariable Long id) {
+    public Event getEmployee(@PathVariable Long id) {
         return employeeService.getEmployee(id);
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Employee> getAllEmployees() {
+    public List<Event> getAllEmployees() {
         return employeeService.getEmployees();
     }
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public Employee createEmployee(@RequestBody Employee employee) {
-        return employeeService.createEmployee(employee);
+    public Event createEmployee(@RequestBody Event event) {
+        return employeeService.createEmployee(event);
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
-    public void updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {
+    public void updateEmployee(@PathVariable Long id, @RequestBody Event event) {
         employeeService.updateEmployee(
-                new Employee(
+                new Event(
                         id,
-                        employee.getFirstName(),
-                        employee.getLastName(),
-                        employee.getEmail(),
-                        employee.getSkills()
+                        event.getFirstName(),
+                        event.getLastName(),
+                        event.getEmail(),
+                        event.getSkills()
                 )
         );
     }
@@ -58,5 +53,5 @@ public class EmployeeController {
     public List<Skill> getEmployeeSkills(@PathVariable Long id) {
         return employeeService.getEmployeeSkills(id);
     }
-
+*/
 }

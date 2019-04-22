@@ -1,14 +1,3 @@
-INSERT INTO EMPLOYEE(ID, FIRST_NAME, LAST_NAME, EMAIL) VALUES (1, 'Brice', 'Argenson', 'bargenson@edgenda.com');
-INSERT INTO EMPLOYEE(ID, FIRST_NAME, LAST_NAME, EMAIL) VALUES (2, 'Gregoire', 'Weber', 'gweber@cleverage.com');
-INSERT INTO EMPLOYEE(ID, FIRST_NAME, LAST_NAME, EMAIL) VALUES (3, 'John', 'Doe', 'jdoe@bnc.com');
-
-INSERT INTO SKILL(ID, NAME, DESCRIPTION) VALUES (1, 'Spring', 'The Spring Framework is an application framework and inversion of control container for the Java platform. ');
-INSERT INTO SKILL(ID, NAME, DESCRIPTION) VALUES (2, 'REST API', 'Representational State Transfer (REST) is an architectural style that defines a set of constraints to be used for creating web services.');
-INSERT INTO SKILL(ID, NAME, DESCRIPTION) VALUES (3, 'Jenkins', 'Jenkins is an open source automation server written in Java.');
-
-INSERT INTO EMPLOYEES_SKILLS(SKILLS_ID, EMPLOYEES_ID) VALUES (1, 1);
-INSERT INTO EMPLOYEES_SKILLS(SKILLS_ID, EMPLOYEES_ID) VALUES (2, 1);
-INSERT INTO EMPLOYEES_SKILLS(SKILLS_ID, EMPLOYEES_ID) VALUES (3, 1);
-INSERT INTO EMPLOYEES_SKILLS(SKILLS_ID, EMPLOYEES_ID) VALUES (2, 2);
-INSERT INTO EMPLOYEES_SKILLS(SKILLS_ID, EMPLOYEES_ID) VALUES (3, 2);
-INSERT INTO EMPLOYEES_SKILLS(SKILLS_ID, EMPLOYEES_ID) VALUES (3, 3);
+INSERT INTO EVENT(ID, NAME, START_DATE, END_DATE,STATUS,OWNER,DESCRIPTION) VALUES (1, 'Event Test 1', '2019-01-02 12:01;00', '2019-01-03 12:01;00, 'ACTIF','test@gmail.com','');
+INSERT INTO EVENT(ID, NAME, START_DATE, END_DATE,STATUS,OWNER,DESCRIPTION) VALUES (2, 'Event Test 2', '2019-01-02 11:01;00', '2019-01-04 12:01;00, 'TERMINE','test@gmail.com','Description event 2');
+INSERT INTO EVENT(ID, NAME, START_DATE, END_DATE,STATUS,OWNER,DESCRIPTION) VALUES (3, 'Event Test 3', '2019-01-02 10:01;00', '2019-01-05 12:01;00, 'ANNULE','test2@gmail.com','Description event 3');
