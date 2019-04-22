@@ -36,9 +36,11 @@ public class EventController {
     }
 */
     @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
-    public void updateEvent(@PathVariable Long id, @RequestBody Event event) {
+    @ResponseStatus(HttpStatus.OK)
+    public String updateEvent(@PathVariable Long id, @RequestBody Event event) {
         eventService.updateEvent(
                 new Event(
+                        id,
                         event.getName(),
                         event.getStartDate(),
                         event.getEndDate(),
@@ -47,6 +49,7 @@ public class EventController {
                         event.getDescription()
                 )
         );
+        return "Updated";
     }
 
     @RequestMapping(method = RequestMethod.GET)

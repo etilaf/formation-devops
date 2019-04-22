@@ -1,3 +1,4 @@
+
 package com.edgenda.bnc.skillsmanager.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -8,7 +9,6 @@ import org.springframework.data.annotation.PersistenceConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-
 import java.util.Date;
 
 @Entity
@@ -22,7 +22,7 @@ public class Event {
     private String name;
 
     @NotNull
-        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
     private Date startDate;
 
     @NotNull

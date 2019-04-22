@@ -46,8 +46,17 @@ public class EventService {
 
     public void updateEvent(Event event) {
         Assert.notNull(event, "Event cannot be null");
-        this.getEvent(event.getId());
-        eventRepository.save(event);
+        Event test = this.getEvent(event.getId());
+        Event update = new Event(
+                test.getId(),
+                event.getName(),
+                event.getStartDate(),
+                event.getEndDate(),
+                event.getStatus(),
+                test.getOwner(),
+                event.getDescription()
+        );
+        eventRepository.save(update);
     }
 
     public List<Event> listEventByOwner(String owner, Date startDate, Date endDate) {
